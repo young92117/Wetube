@@ -14,15 +14,16 @@ function handleHome(req, res) {
 }
 
 
-/*
-function handleProfile(req, res) {
-  res.send("You are on my profile")
+const betweenHome = (req, rest, next) => {
+  console.log("I'm between")
+  next()
 }
-*/
-
 const handleProfile = (req, res) => res.send("You are on my profile")
 
+app.use(betweenHome)   //globally add middleware
+
 app.get("/", handleHome)
+//app.get("/", betweenHome, handleHome)   // add middleware locally
 
 app.get("/profile", handleProfile)
 
